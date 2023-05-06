@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  consultorio:
+    restart: always
+    container_name: consultorio
+    build:
+      context: D:\proyectos\consultorio
+      dockerfile: Dockerfile
+    ports:
+      - 4002:4002

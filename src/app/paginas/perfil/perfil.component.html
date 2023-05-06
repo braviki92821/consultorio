@@ -1,0 +1,62 @@
+
+<div class="container rounded bg-white">
+      <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img *ngIf="url !== undefined" class="rounded-circle mt-5" width="120px" src="{{url}}">
+                <img *ngIf="url === undefined" class="rounded-circle mt-5" width="120px" src="https://icon-library.com/images/no-user-image-icon/no-user-image-icon-0.jpg">
+                <input class="form-control form-control-sm" (change)="subir($event)" placeholder="subir foto" type="file" id="file" accept=".jpg">
+                <a class="btn" (click)="uploadPhoto()" >Subir foto   <mat-icon>add_a_photo</mat-icon>   </a>
+                <span class="font-weight-bold">{{nombre}}</span>
+                <span class="text-black-50">{{correo}}</span>
+            </div>
+        </div>
+        
+        <div class="col-md-5 border-right">
+
+            <div class="p-3 py-5">
+                <form [formGroup]="Perfil" (ngSubmit)="guardarPerfil()">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Perfil</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Nombres" >
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Numero de telefono</label>
+                        <input type="text" class="form-control" formControlName="telefono" placeholder="Numero de telefono" >
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Codigo Postal</label>
+                        <input type="text" class="form-control" formControlName="codigoPostal" placeholder="Codigo postal" >
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Estado</label>
+                        <input type="text" class="form-control" formControlName="estado" placeholder="" >
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Municipio</label>
+                        <input type="text" class="form-control" formControlName="municipio" placeholder="" >
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Correo</label>
+                        <input type="text" class="form-control" [attr.disabled]="true" formControlName="correo" placeholder="Correo">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Numero de seguro social(opcional)</label>
+                        <input type="text" class="form-control" formControlName="NSS" placeholder="Ej 0000PDSSA01223" >
+                    </div>
+                </div>
+                <div *ngIf="!registrar" class="mt-2 text-center"><button class="btn btn-primary profile-button" type="submit">Actualizar perfil</button></div>
+                <div *ngIf="registrar" class="mt-2 text-center"><button class="btn btn-primary profile-button" type="submit">Guardar perfil</button></div>
+              </form>
+            </div>
+        </div>
+    
+    </div>
+</div>
+

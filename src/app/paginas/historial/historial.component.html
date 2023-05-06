@@ -1,0 +1,23 @@
+<div class="container rounded">
+    <h1 class="h1">Historial</h1>
+    <div  class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Diagnostico</th>
+                <th>Tratamiento</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of historial">
+                <td >{{result.diagnostico}}</td>
+                <td >{{result.tratamiento}}</td>
+                <td >{{result.fecha}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+</div>
+

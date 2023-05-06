@@ -1,0 +1,33 @@
+<div class="container rounded">
+  <h2 class="h2">¿Hola como puedo ayudarte?</h2>
+  <p class="mt-3 fw-semibold">Describe tus sintomas en el cuadro de texto......</p>
+  <textarea class="form-control" #sintomas cols="10" rows="10"></textarea>
+  <a class="btn btn-outline-success mt-3" (click)="consultarEnfermedades(sintomas)">
+    <mat-icon class="d-inline-block align-text-top">send</mat-icon>
+    Enviar</a>
+    <div>
+        <h2 class="h2">Resultado o Resultados</h2>
+         <p>seleccione la opcion que corresponda a sus sintomas si no sabe describir otros sintomas consultelos en los resultados</p>
+        <div  class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Diagnostico</th>
+                    <th>Tratamiento</th>
+                    <th>Sintomas</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let result of enfermedades">
+                    <td ><input #diagnostico class="form-control border-0 transparent-input" value="{{result.nombre}}" disabled></td>
+                    <td ><textarea value="{{result.tratamiento}}" #trata disabled></textarea></td>
+                    <td >{{result.sintomas}}</td>
+                    <td ><button class="btn btn-success" (click)="generarReceta(trata,diagnostico)" >Aceptar Diagnostico</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+

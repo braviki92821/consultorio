@@ -1,0 +1,53 @@
+<nav class="navbar bg-light" *ngIf="sesionA">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <mat-icon class="d-inline-block align-text-top"> local_pharmacy</mat-icon>
+        Diagnostico Medico
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Diagnostico Medico</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" [routerLink]="'/Inicio'">
+                <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">personal_video</mat-icon>
+                Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" [routerLink]="'/Perfil'">
+                <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
+                Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/DatosMedicos'">
+                <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">local_hospital</mat-icon>
+                Datos Medicos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/Consultar'">
+                  <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">local_convenience_store</mat-icon>
+                  Ir a consulta</a>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" [routerLink]="'/Historial'" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">dvr</mat-icon>
+                Historial
+              </a>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <a class="btn btn-outline-success" (click)="cerrarSesion()">
+                <mat-icon class="d-inline-block align-text-top" aria-hidden="false" aria-label="Example home icon">exit_to_app</mat-icon>
+                Cerrar Sesión
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>

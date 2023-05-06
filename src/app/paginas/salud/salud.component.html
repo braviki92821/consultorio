@@ -1,0 +1,76 @@
+<div class="container rounded">
+    <h2 class="h2">Datos Medicos</h2>
+ <form class="was-validated" [formGroup]="Datos" (ngSubmit)="guardarDatos()">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <label class="form-label" for="form6Example1">Estatura</label>
+          <input type="text" id="form6Example1" formControlName="estatura" class="form-control" placeholder="Ejemplo 1.60m" required/>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <label class="form-label" for="form6Example2">Peso</label>
+          <input type="text" id="form6Example2" formControlName="peso" class="form-control"  placeholder="Ejemplo 80kg" required/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example1">Tipo de Sangre</label>
+            <select class="form-control" formControlName="tipoSangre"  required>
+              <option [value]="'A+'">A+</option>
+              <option [value]="'A-'">A-</option>
+              <option [value]="'B+'">B+</option>
+              <option [value]="'B-'">B-</option>
+              <option [value]="'AB+'">AB+</option>
+              <option [value]="'AB-'">AB-</option>
+              <option [value]="'O+'">O+</option>
+              <option [value]="'O-'">O-</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example2">Alergias(para seleccionar mas de 2 opciones presione ctrl + click)</label>
+            <select class="form-control" formControlName="alergias" multiple required>
+              <option [value]="'Alergia a los aines'">Alergia a los aines</option>
+              <option [value]="'Alergia dermatologica'">Alergia dermatologica</option>
+              <option [value]="'Alergia al polen'">Alergia al polen</option>
+              <option [value]="'Alergia a los ácaros'">Alergia a los ácaros</option>
+              <option [value]="'Alergia a los alimentos'">Alergia a los alimentos</option>
+              <option [value]="'Alergia a las picaduras de insectos'">Alergia a las picaduras de insectos</option>
+              <option [value]="'Alergia al látex'">Alergia al látex</option>
+              <option [value]="'Alergia a fármacos'">Alergia a fármacos</option>
+              <option [value]="'Alergia a cosméticos'">Alergia a cosméticos</option>
+              <option [value]="'Alergia al níquel'">Alergia al níquel</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example1">Problemas medicos</label>
+            <input type="text" id="form6Example1" formControlName="probmedicos" class="form-control" placeholder="ejemplo Presion Alta" required/>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example2">Historial de Cirujias</label>
+            <select class="form-control" formControlName="cirujias" required>
+                <option [value]="'si'">si</option>
+                <option [value]="'no'">no</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+   
+    <button type="submit" class="btn btn-primary btn-block mb-4">Guardar Datos</button>
+  </form>
+</div>
