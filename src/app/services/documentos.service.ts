@@ -40,7 +40,6 @@ export class DocumentosService {
             });
           })
         )
-        .subscribe();
     });
   }
 
@@ -58,10 +57,17 @@ export class DocumentosService {
   //where camo==''
   sos(cadena:string[]){
    const collection = this.firebase.collection<enfermedades>('enfermedades', (ref) =>
-     ref.where('sintomas','array-contains-any',cadena)   
+     ref.where('sintomas','==',cadena)   
    )
    return collection.valueChanges();
   }
+
+
+  sas(cadena:string[]){
+    const collection = this.firebase.collection<enfermedades>('enfermedades', (ref) =>
+      ref.where('sintomas','array-contains-any',cadena) )
+    return collection.valueChanges();
+   }
 
   getHistory(idUser:string){
     const collection = this.firebase.collection<historial>('historial', (ref) =>

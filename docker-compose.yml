@@ -7,4 +7,4 @@ services:
       context: D:\proyectos\consultorio
       dockerfile: Dockerfile
     ports:
-      - 4002:4002
+      - 4200:4200

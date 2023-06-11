@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { registrarUsuario } from '../interfaces/registro.interface';
 import { map } from 'rxjs';
@@ -11,7 +10,7 @@ import { map } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private authfire:AngularFireAuth, private http:HttpClient,private fire:AngularFirestore) { }
+  constructor(private authfire:AngularFireAuth, private http:HttpClient) { }
 
    registrarUsuario(FormR:registrarUsuario){
      let body={email: FormR.correo, password: FormR.contraseña, displayName:FormR.nombres,returnSecureToken: true}
