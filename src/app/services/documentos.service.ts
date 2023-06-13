@@ -54,14 +54,13 @@ export class DocumentosService {
     const collection = this.firebase.collection<tipo>(path);
     return collection.valueChanges();
   }
-  //where camo==''
+
   sos(cadena:string[]){
    const collection = this.firebase.collection<enfermedades>('enfermedades', (ref) =>
      ref.where('sintomas','==',cadena)   
    )
    return collection.valueChanges();
   }
-
 
   sas(cadena:string[]){
     const collection = this.firebase.collection<enfermedades>('enfermedades', (ref) =>

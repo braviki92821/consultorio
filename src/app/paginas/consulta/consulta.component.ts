@@ -18,7 +18,8 @@ export class ConsultaComponent implements OnInit {
 
   logo:string
 
-  sintomas:string[]=[]
+  sintomas:string[] = []
+
   enfermedades:enfermedades[]
 
   historialM:historial ={
@@ -63,9 +64,9 @@ export class ConsultaComponent implements OnInit {
   ngOnInit(): void {
     this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
     this.datosMedicos()
-    this.getImageDataUrlFromLocalPath1('assets/Logo.png').then(
+     this.getImageDataUrlFromLocalPath1('assets/Logo.png').then(
       result => this.logo = result
-    )
+     )
   }
 
   consultarEnfermedades(sintomas:any){
@@ -77,13 +78,12 @@ export class ConsultaComponent implements OnInit {
        return
       }
       this.fire.sas(sintomas).subscribe( data =>{
-        this.enfermedades = data.filter((f)=>{return f.sintomas.length >= sintomas.length })
+        this.enfermedades = data.filter((f)=>{ return f.sintomas.length >= sintomas.length })
         console.log(this.enfermedades)
       })
  
     })
   }
-
 
   cadenas(cadenaSintomas:string):string[]{
     ///Hola,Mundo
@@ -95,44 +95,55 @@ export class ConsultaComponent implements OnInit {
 
   generarReceta(Tratamiento:any,Diagnostico:any){
     const pdfDefinition: any = {
-
+      background:{ image:this.logo,margin: [350,500, 0, 15],opacity:0.5,width: 150,
+			height: 150,},
       header:{
         columns:[
-          {image: this.logo ,
-            width: 40,
-            height: 40,
-         }
-         ,{text: '     ', style:'header'}  ,{image: this.logo ,
-          width: 40,
-          height: 40,
-       } ,
-        ]
-
+        {image: this.logo ,
+            width: 50,
+            height: 50,
+            alignment: 'left',margin: [15, 5, 0, 15]},{text:'Consultorio Medico Virtual',fontSize:28,bold: true, alignment: 'left',
+            margin: [25, 5, 0, 15]}, ]
       },
       content: [
 
-        {text: 'Receta Medica', style:'header'} ,
-          { text: [ 'Fecha: ',{ text: this.today.toLocaleDateString(), style:'datos' }] },
-          { text: [ 'Nombre: ',{ text: localStorage.getItem('nombre'), style:'datos' }] },
-          { text: [ 'Estatura: ',{ text: this.estatura, style:'datos' }] },
-          { text: [ 'Peso: ',{ text: this.peso, style:'datos' }] },
-          { text: [ 'Problemas medicos: ',{ text: this.probmedicos, style:'datos' }] },
-          { text: [ 'Diagnostico: ',{ text: Diagnostico.value, style:'datos' }] },
+          {text: '--------------------------------------------------------------------', style:'header'} ,
+          { columns:[
+          {  alignment: 'left',margin: [0, 5, 0, 15], text: [ 'Fecha: ',{ text: this.today.toLocaleDateString(), style:'datos' },] },
+          {  alignment: 'right',margin: [0, 5, 0, 15] ,text: [ 'Nombre: ',{ text: localStorage.getItem('nombre'), style:'datos' }] },
+          ]},
+          { columns:[
+            {  alignment: 'left',margin: [0, 5, 0, 15], text: [ 'Estatura: ',{ text: this.estatura, style:'datos' }] },
+            {  alignment: 'right',margin: [0, 5, 0, 15], text: [ 'Diagnostico: ',{ text: Diagnostico.value, style:'datos' }] },
+          ]},
+          // { text: [ 'Fecha: ',{ text: this.today.toLocaleDateString(), style:'datos' },] },
+          // { text: [ 'Nombre: ',{ text: localStorage.getItem('nombre'), style:'datos' }] },
+          // { text: [ 'Estatura: ',{ text: this.estatura, style:'datos' }] },
+          // { text: [ 'Peso: ',{ text: this.peso, style:'datos' }] },
+          // { text: [ 'Problemas medicos: ',{ text: this.probmedicos, style:'datos' }] },
+          // { text: [ 'Diagnostico: ',{ text: Diagnostico.value, style:'datos' }] },
           { text: 'Tratamiento',style:'header'},
           { text:  Tratamiento.value,style:'texto' },
       ]
     ,
+    footer:{
+      columns: [
+        { text: 'Consultorio Virtual derechos reservados 2023', alignment: 'center',fontSize: 22, },
+      ]
+    },
      styles: {
     header: {
       fontSize: 22,
       bold: true,
-      alignment: 'center'
+      alignment: 'center',
+			margin: [0, 5, 0, 15]
     },
     texto: {
       fontSize: 16,
     },
     datos:{
       fontSize: 14,
+      decoration:'underline'
     }
      }
     }
@@ -158,8 +169,8 @@ export class ConsultaComponent implements OnInit {
 
   array(){
     if(this.FormDiagnostico.invalid){
-      alert('seleccione una opción')
-      return
+      alert('complete todas las selecciones')
+      return //que detiene el codigo y
     }
     console.log(this.FormDiagnostico.value)
     
@@ -178,11 +189,14 @@ export class ConsultaComponent implements OnInit {
     this.sintomas.push(this.FormDiagnostico.value.tos)
     this.sintomas.push(this.FormDiagnostico.value.reflujo)
     this.sintomas.push(this.FormDiagnostico.value.insomnio)
-    this.sintomas.push(this.FormDiagnostico.value.cansancio)
+    this.sintomas.push(this.FormDiagnostico.value.cansancio)  //ya sea el - o valor del s
     this.sintomas.push(this.FormDiagnostico.value.hardtobreath)
 
     console.log(this.sintomas)
+
+
     this.sintomas = this.sintomas.filter((f)=> { return f !=='-' })
+
     this.sintomas.sort()
     console.log(this.sintomas)
    this.consultarEnfermedades(this.sintomas)
@@ -202,5 +216,6 @@ export class ConsultaComponent implements OnInit {
         img.src = localPath;
     })
 
-}
+  }
+
 }
